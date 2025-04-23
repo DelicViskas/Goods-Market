@@ -165,7 +165,7 @@ export default function Chat({ id, session }: { id: string, session: Session | n
           onBlur={() => {
             setTimeout(() => {
               scrollToBottom()
-            }, 300)
+            }, 100)
           }}
         />
         <div className={classes.buttons}>

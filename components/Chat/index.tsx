@@ -162,11 +162,7 @@ export default function Chat({ id, session }: { id: string, session: Session | n
         }}
           onChange={event => setValue(event.target.value)} 
           placeholder="Введите сообщение"
-          onBlur={() => {
-            setTimeout(() => {
-              scrollToBottom()
-            }, 100)
-          }}
+          onBlur={() => scrollToBottom()}
         />
         <div className={classes.buttons}>
           <ButtonIcon src={down} height={32} width={32} onClick={scrollToBottom} title={"прокрутить вниз"} alt={"прокрутить вниз"} />

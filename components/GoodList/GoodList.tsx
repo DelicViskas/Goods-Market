@@ -141,8 +141,12 @@ export default function GoodsList({ type, session }: { type: 'goods' | 'favorite
     );
   }
 
-  if (type === 'favorites') {
+  if (type === 'favorites' && !goods.length) {
     return <div className="center"><h3>Нет товаров в избранном</h3></div>;
+  }
+
+  if (!goods.length) {
+    return <div className="center"><h3>Нет товаров по запросу</h3></div>;
   }
 
   return null;

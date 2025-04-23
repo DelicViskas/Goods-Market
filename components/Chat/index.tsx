@@ -156,6 +156,7 @@ export default function Chat({ id, session }: { id: string, session: Session | n
       <div className={classes.formSend}>
         <textarea className={classes.input} value={value} onKeyDown={event => {
         if (event.key === 'Enter') {
+          if (event.shiftKey) return;
           event.preventDefault();
           submitMessage();
         }

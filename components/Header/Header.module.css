@@ -61,7 +61,7 @@
   }
 
   .logo {
-    margin-left: -10;
+    margin-left: -10px;
     width: 50px;
   }
 
@@ -70,7 +70,7 @@
   }
 
   .logoMini {
-    margin-left: 50;
+    margin-left: 50px;
     display: block;
   }
 }

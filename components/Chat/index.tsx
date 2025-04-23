@@ -155,8 +155,10 @@ export default function Chat({ id, session }: { id: string, session: Session | n
       </div>
       <div className={classes.formSend}>
         <textarea className={classes.input} value={value} onKeyDown={event => {
-        if (event.key === 'Enter')
+        if (event.key === 'Enter') {
+          event.preventDefault();
           submitMessage();
+        }
       }} onChange={event => setValue(event.target.value)} placeholder="Введите сообщение" />
         <div className={classes.buttons}>
           <ButtonIcon src={down} height={32} width={32} onClick={scrollToBottom} title={"прокрутить вниз"} alt={"прокрутить вниз"} />

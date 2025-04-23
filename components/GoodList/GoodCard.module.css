@@ -24,9 +24,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  /* & span:hover {
-    color: #00000040;
-  } */
+
   & > button {
     position: absolute;
     top: 303px;

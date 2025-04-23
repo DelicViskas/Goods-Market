@@ -2,7 +2,7 @@
   flex-grow: 1;
   position: relative;
   margin: 0;
-  
+
   & input {
     border-radius: 6px;
     margin: 0;
@@ -13,14 +13,16 @@
     font-size: 17px;
     padding: .3em 2.5em .3em .6em;
   }
+
   & button:nth-child(2) {
     position: absolute;
-    right: 30;
-    top: -9;
+    right: 30px;
+    top: -9px;
   }
+
   & button:last-child {
     position: absolute;
-    right: 5;
-    top: -9;
+    right: 5px;
+    top: -9px;
   }
 }

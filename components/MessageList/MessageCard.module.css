@@ -12,37 +12,38 @@
   align-items: center;
   cursor: pointer;
   transition: scale .2s;
+
   &:hover {
     scale: 1.02;
   }
+
   & .icon {
     flex-grow: 1;
     border-radius: 50%;
     max-width: 55px;
   }
-  & > div {
+
+  &>div {
     flex-grow: 4;
     flex-shrink: 1;
     min-width: 0;
-    /* max-width: 80%; */
   }
-  & span {
-    /* width: 70px; */
-    flex-grow: 1;
 
+  & span {
+    flex-grow: 1;
     text-align: right;
   }
-  & p {
 
+  & p {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  & > button {
+  &>button {
     position: absolute;
-    top:-10;
-    right: -10;
+    top: -10px;
+    right: -10px;
     background-color: transparent;
     border-radius: .3em;
     padding: 1em 2em;
@@ -53,7 +54,7 @@
 .blockRemove {
   background-color: #fff;
   box-shadow: 2px 2px 5px #00000040;
-  
+
   border-radius: .5em;
   position: absolute;
   top: 20;
@@ -75,13 +76,10 @@
 
 @media (max-width: 575px) {
   .msg {
-    /* & .icon {
-      width: 40px;
-      height: 40px;
-    } */
     & h2 {
       font-size: 18px;
     }
+
     & p {
       font-size: 14px;
     }

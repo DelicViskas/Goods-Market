@@ -2,6 +2,7 @@
   position: relative;
   z-index: 100;
 
+
   & button {
     display: flex;
     align-items: center;
@@ -11,6 +12,8 @@
   & button img {
     height: 35px;
     width: 35px;
+    will-change: transform;
+    transform: translateZ(0);
   }
 }
 

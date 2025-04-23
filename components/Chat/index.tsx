@@ -98,7 +98,9 @@ export default function Chat({ id, session }: { id: string, session: Session | n
       if (!res.ok) throw new Error('Ошибка при отправке сообщения на сервер');
       mutate(`${messagesURL}?type=chat&id=${id}`)
       mutate(messagesURL, undefined, true)
-
+      setTimeout(() => {
+        scrollToBottom();
+      }, 300);
     } catch (error) {
       console.error(error)
     }
@@ -155,11 +157,11 @@ export default function Chat({ id, session }: { id: string, session: Session | n
       </div>
       <div className={classes.formSend}>
         <textarea className={classes.input} value={value} onKeyDown={event => {
-        if (event.key === 'Enter' &&  event.shiftKey) {
-          event.preventDefault();
-          submitMessage();
-        }
-      }} onChange={event => setValue(event.target.value)} placeholder="Введите сообщение" />
+          if (event.key === 'Enter' && event.shiftKey) {
+            event.preventDefault();
+            submitMessage();
+          }
+        }} onChange={event => setValue(event.target.value)} placeholder="Введите сообщение" />
         <div className={classes.buttons}>
           <ButtonIcon src={down} height={32} width={32} onClick={scrollToBottom} title={"прокрутить вниз"} alt={"прокрутить вниз"} />
           <ButtonIcon src={send} height={32} width={32} onClick={submitMessage} title={"отправить"} alt={"отправить"} />

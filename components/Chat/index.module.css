@@ -22,19 +22,18 @@
    cursor: pointer;
    transition: background 0.2s ease;
 
-  & a {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
-  }
+   & a {
+     flex-grow: 1;
+     display: flex;
+     align-items: center;
+     gap: 0.8em;
+   }
 
-  & img {
-    border-radius: 50%;
-  }
+   & img {
+     border-radius: 50%;
+   }
 
-  & button {
-  }
+   & button {}
  }
 
  .userLink:hover {
@@ -56,10 +55,10 @@
  }
 
  .dateHeader {
-  margin: 1em auto;
-  color: #00000090;
-  position: relative;
-  font-style: italic;
+   margin: 1em auto;
+   color: #00000090;
+   position: relative;
+   font-style: italic;
 
  }
 
@@ -68,7 +67,7 @@
    align-items: center;
 
    & textarea {
-    font-size: 16px;
+     font-size: 16px;
    }
  }
 
@@ -102,20 +101,22 @@
    display: flex;
    align-items: flex-end;
    gap: 0.5em;
-   max-width: 80%;
-   
+   max-width: 95%;
+
 
    & img {
      border-radius: 50%;
    }
 
-   & p {
+   & pre {
      word-break: break-word;
    }
 
  }
 
- .message p {
+ .message pre {
+   font-family: sans-serif;
+   text-wrap: wrap;
    padding: 0.5em 1em;
    box-shadow: 2px 2px 5px #00000020;
    border-radius: 1em;
@@ -128,7 +129,7 @@
    align-self: flex-end;
  }
 
- .message.right p {
+ .message.right pre {
    background-color: #d6f5d6;
  }
 
@@ -155,7 +156,7 @@
      font-size: 0.9rem;
    }
 
-   .message p {
+   .message pre {
      font-size: 0.9rem;
    }
  }

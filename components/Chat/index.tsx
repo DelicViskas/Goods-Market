@@ -142,7 +142,7 @@ export default function Chat({ id, session }: { id: string, session: Session | n
                 <Link href={mes.sender_ms === userId ? '/account' : `/user/${data.partner.id}`}>
                   <Image src={mes.sender_ms === userId ? userImg : partnerImg} alt='фото профиля' width={30} height={30} />
                 </Link>
-                <p>{mes.text}</p>
+                <pre>{mes.text}</pre>
                 <span>{new Date(mes.createdAt).toLocaleTimeString('ru-RU', {
                   hour: '2-digit',
                   minute: '2-digit',
@@ -155,8 +155,7 @@ export default function Chat({ id, session }: { id: string, session: Session | n
       </div>
       <div className={classes.formSend}>
         <textarea className={classes.input} value={value} onKeyDown={event => {
-        if (event.key === 'Enter') {
-          if (event.shiftKey) return;
+        if (event.key === 'Enter' &&  event.shiftKey) {
           event.preventDefault();
           submitMessage();
         }

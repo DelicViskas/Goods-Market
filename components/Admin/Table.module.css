@@ -1,0 +1,119 @@
+.adminPanel {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+
+
+
+  & .btnGroup {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .btnFetch {
+    flex-grow: 1;
+    border-bottom: 1.5px solid #000000;
+  }
+
+  & .exit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+  }
+  & .exit button {
+    width: 100%;
+  }
+
+  & .btnGroup .active {
+    background-color: #ddd;
+  }
+
+  & .btnFetch button {
+    border: none;
+    background-color: transparent;
+    padding: 0.8em;
+    border-right: 1px solid #000;
+    cursor: pointer;
+    transition: background-color .2s linear;
+  }
+  & .btnFetch button:hover {
+    background-color: #ddd;
+  }
+}
+  
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+
+  & th, 
+  & td {
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  & th:nth-last-child(1){
+    width: 80px;
+    
+  }
+  
+  & th {
+    background-color: #f4f4f4;
+  }
+  
+  & button {
+    padding: .5em;
+
+    &:hover {
+      scale: 1.05;
+    }
+    &:active {
+      scale: .98;
+    }
+  }
+  & td:last-child {
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > div {
+      scale: .6;
+    }
+    & button {
+      background-color: transparent;
+    }
+  }
+
+  & input,
+  & select,
+  & textarea {
+    width: 100%;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 6px;
+    border-radius: .5em;
+  }
+
+  & input:invalid {
+    border-color: red;
+  }
+
+}
+
+
+
+

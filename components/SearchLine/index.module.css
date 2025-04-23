@@ -1,0 +1,8 @@
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  flex-grow: 1;
+
+}

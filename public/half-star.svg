@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <defs>
+    <clipPath id="clipLeft">
+      <rect x="0" y="0" width="12" height="24" />
+    </clipPath>
+    <clipPath id="clipRight">
+      <rect x="12" y="0" width="12" height="24" />
+    </clipPath>
+  </defs>
+
+  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#FFD700" clip-path="url(#clipLeft)" />
+
+  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#ccc" clip-path="url(#clipRight)" />
+</svg>

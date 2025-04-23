@@ -1,0 +1,67 @@
+.burgerMenu {
+  display: none;
+
+  & button {
+    z-index: 100;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .burgerMenu {
+    display: block;
+  }
+}
+
+.closeBtn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+}
+
+.nav {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  background-color: #fff;
+  padding: .8em;
+  transition: right .2s linear;
+
+  & a>div {
+    top: 8;
+    right: 0;
+  }
+
+  &>a {
+    & button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
+  &>a:first-child {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 35px;
+    height: 35px;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+}
+
+.show {
+  right: 0;
+
+}
+
+.hide {
+  right: -60px;
+}

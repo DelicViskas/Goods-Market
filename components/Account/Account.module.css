@@ -1,0 +1,198 @@
+.account {
+  border-left: 1.5px solid #00000040;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  & .userIcon {
+    border-radius: 50%;
+    margin: 0 2px 0 10px;
+    height: 40px;
+
+  }
+}
+
+.wrapper {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+  gap: .8em;
+  min-width: 260px;
+}
+
+.image {
+  position: relative;
+}
+
+
+.reviews {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+
+  &:hover span:last-child {
+    color: red;
+  }
+
+  & span:first-child {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  & span:last-child {
+    color: blue;
+    margin-left: 0.2em;
+
+    transition: color .1s linear;
+
+  }
+}
+
+.upload {
+  display: none;
+}
+
+.label {
+  position: absolute;
+  left: 140px;
+  top: 150px;
+  background-color: #fff;
+  width: 60px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.camera {
+
+  transition: scale .1s linear;
+
+  &:hover {
+    scale: 1.05;
+  }
+
+  &:active {
+    scale: .95;
+  }
+}
+
+.img {
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: #00000020;
+}
+
+@keyframes Skeleton-keyframes-pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    width: 80%;
+    padding: 1em;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .label {
+    top: 105px;
+    left: 105px;
+    width: 50px;
+  }
+
+  .reviews {
+    align-self: center;
+    font-size: 16px;
+  }
+
+  .camera {
+    width: 40px;
+    height: 40px;
+  }
+
+  .name span {
+    font-size: 18px;
+  }
+
+  .name button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 90%;
+    padding: .5em;
+  }
+
+  .img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .label {
+    left: 75px;
+    top: 90px;
+    width: 45px;
+  }
+
+  .reviews {
+    font-size: 14px;
+  }
+
+  .camera {
+    width: 35px;
+    height: 35px;
+  }
+
+  .name span {
+    font-size: 16px;
+  }
+
+  .name button {
+    width: 18px;
+    height: 18px;
+  }
+
+}

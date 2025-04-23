@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categories {
+  id    Int     @id @default(autoincrement())
+  name  String
+  Goods Goods[]
+}
+
+model Goods {
+  id          Int         @id @default(autoincrement())
+  title       String
+  price       Int
+  description String
+  categoryId  Int
+  accountId   String
+  image       String[]
+  createdAt   DateTime    @default(now())
+  Favorites   Favorites[]
+  account     User        @relation(fields: [accountId], references: [id])
+  category    Categories  @relation(fields: [categoryId], references: [id])
+}
+
+model Reviews {
+  id          Int      @id @default(autoincrement())
+  rating      Int
+  comment     String
+  sender_rw   String
+  receiver_rw String
+  createdAt   DateTime @default(now())
+  receiver    User     @relation("AccountReceivedReviews", fields: [receiver_rw], references: [id], onDelete: Cascade)
+  sender      User     @relation("AccountSentReviews", fields: [sender_rw], references: [id], onDelete: Cascade)
+}
+
+model Messages {
+  id          Int      @id @default(autoincrement())
+  sender_ms   String
+  receiver_ms String
+  text        String
+  createdAt   DateTime @default(now())
+  receiver    User     @relation("AccountReceivedMessages", fields: [receiver_ms], references: [id], onDelete: Cascade)
+  sender      User     @relation("AccountSentMessages", fields: [sender_ms], references: [id], onDelete: Cascade)
+}
+
+model Favorites {
+  accountId String
+  goodsId   Int
+  account   User   @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  goods     Goods  @relation(fields: [goodsId], references: [id], onDelete: Cascade)
+
+  @@id([accountId, goodsId])
+}
+
+model User {
+  id                String          @id @default(cuid())
+  name              String?
+  password          String?
+  email             String          @unique
+  emailVerified     DateTime?
+  verificationToken String?
+  image             String?
+  age               Int?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @default(now())
+  role              Role            @default(USER)
+  accounts          Account[]
+  Authenticator     Authenticator[]
+  Favorites         Favorites[]
+  Goods             Goods[]
+  receivedMessages  Messages[]      @relation("AccountReceivedMessages")
+  sentMessages      Messages[]      @relation("AccountSentMessages")
+  receivedReviews   Reviews[]       @relation("AccountReceivedReviews")
+  sentReviews       Reviews[]       @relation("AccountSentReviews")
+  sessions          Session[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+enum Role {
+  USER
+  ADMIN
+}

@@ -1,0 +1,29 @@
+.editName {
+  max-width: 380px;
+  border-radius: 1em;
+  box-shadow: 2px 2px 5px #00000040;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  padding: 1em;
+  background-color: #fff;
+  width: 60%;
+  /* background-color: #fff;
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  border-radius: 1em;
+  padding: 1em;
+  justify-content: space-around; */
+  & label {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  & input {
+    width: 80%;
+  }
+}

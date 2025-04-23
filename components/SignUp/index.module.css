@@ -1,0 +1,60 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: #ececec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  & form {
+    margin: 0 0.5em;
+    position: relative;
+    width: 368px;
+    background-color: #fff;
+    border-radius: 1em;
+    padding: 2em 2em 1.25em;
+  }
+
+  & button {
+    width: 100%;
+    background-color: #157efb;
+    color: #fff;
+    padding: 0.75em 1em;
+    border-radius: .5em;
+    height: 50px;
+    transition: background-color 250ms ease-in-out;
+    &:hover {
+      background-color: #0f6ddb;
+    }
+    &:active {
+      scale: .98;
+    }
+  }
+  & label {
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 0.25em;
+  }
+  & input {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid #ffffff;
+    font-size: 1rem;
+    border-radius: .5em;
+    color: #000;
+    background-color: color-mix(in srgb, #fff 95%, black);
+    margin-bottom: 0.5em;
+  }
+}
+.errorText {
+  color: red;
+  font-size: 0.8em;
+  display: block;
+}
+
+.confirmEmail {
+  color: green;
+}
+
+

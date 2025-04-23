@@ -1,0 +1,109 @@
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  & .reviews {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+.ratingSummary {
+  box-shadow: 2px 2px 5px #00000040;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #fff;
+  font-family: sans-serif;
+}
+
+.averageBlock {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+
+.average {
+  font-size: 3em;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+}
+
+.review {
+  min-width: 600px;
+  width: 80%;
+  border-radius: 1em;
+  box-shadow: 2px 2px 5px #00000040;
+  padding: 0.8em;
+  & .infoSender {
+    display: flex;
+    gap: .8em;
+  }
+  & img {
+    border-radius: 50%;
+  }
+  & span {
+    color: #666;
+    font-size: 14px;
+  }
+  & div:nth-child(2) {
+    margin: 0.2em 0;
+    & > img {
+      width: 20px;
+    }
+  }
+  & p {
+    padding: .5em 0;
+  }
+}
+
+.total {
+  font-size: .8em;
+  color: #666;
+}
+.barRow {
+  display: flex;
+  align-items: center;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+
+.barBackground {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border: 1px solid #cccccc93;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc00, #ffaa00);
+  transition: width 0.3s ease-in-out;
+}
+
+.count {
+  width: 2rem;
+  text-align: right;
+}
+
+
+@media(max-width: 625px) {
+  .review {
+    width: 100%;
+    min-width: 0;
+  }
+}

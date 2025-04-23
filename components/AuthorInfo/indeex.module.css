@@ -1,0 +1,83 @@
+.wrapper {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+  gap: .8em;
+  min-width: 260px;
+}
+
+.userName {
+  color: blue;
+  transition: color .1s linear;
+
+  &:hover {
+    color: red;
+  }
+}
+
+.reviews {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+
+  &:hover span:last-child{
+    color: red;
+  }
+
+  & span:first-child {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  & span:last-child {
+    color: blue;
+    margin-left: 0.2em;
+
+    transition: color .1s linear;
+    
+  }
+}
+
+.img {
+  border-radius: 50%;
+}
+
+
+@media (max-width: 900px) {
+  .wrapper {
+    width: 80%; 
+    padding: 1em; 
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .reviews {
+    align-self: center;
+    font-size: 16px; 
+  }
+
+}
+
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 90%; 
+    padding: .5em; 
+  }
+
+  .img {
+    width: 120px; 
+    height: 120px;
+  }
+
+  .reviews {
+    font-size: 14px; 
+  }
+
+}

@@ -20,6 +20,7 @@ import FavoriteCountClient from "../FavoritesCounter";
 
 export default function BurgerMenu({ session }: { session: Session | null }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,7 +31,16 @@ export default function BurgerMenu({ session }: { session: Session | null }) {
     }
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+    } else {
+      const timeout = setTimeout(() => setShouldRender(false), 300); 
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen]);
 
   return <div className={classes.burgerMenu} ref={selectRef}>
     {isOpen ?
@@ -38,7 +48,7 @@ export default function BurgerMenu({ session }: { session: Session | null }) {
       :
       <ButtonIcon src={burger} width={24} height={50} title="меню" alt="меню" onClick={() => setIsOpen(true)} />}
 
-    {<nav className={`${classes.nav} ${isOpen ? classes.show : classes.hide}`} >
+    {shouldRender && <nav className={`${classes.nav} ${isOpen ? classes.fadeIn : classes.fadeOut}`}>
       {session ?
         <>
           <Link href={'/account'}>

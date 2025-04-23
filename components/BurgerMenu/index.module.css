@@ -21,13 +21,14 @@
 
 .nav {
   position: absolute;
-
+  right: 0;
+  width: 60px;
   display: flex;
   flex-direction: column;
   gap: .5em;
   background-color: #fff;
   padding: .8em;
-  transition: right .2s linear;
+
 
   & a>div {
     top: 8;
@@ -57,11 +58,35 @@
   }
 }
 
-.show {
-  right: 0;
-
+.fadeIn {
+  animation: fadeIn 0.3s ease forwards;
 }
 
-.hide {
-  right: -60px;
+.fadeOut {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }

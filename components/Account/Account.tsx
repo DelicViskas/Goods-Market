@@ -14,7 +14,7 @@ import ButtonIcon from "../Button/Button-icon";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import EditName from "../EditName";
 import AccountSkeleton from "../skeleton/AccountSkeleton";
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import RatingStars from "../Rating/RatingStars";
 
 type U = User & {
@@ -22,12 +22,14 @@ type U = User & {
   reviewslength: number
 }
 
-export default function Account() {
+function Account() {
+  console.log('render account');
+
   const { data, error, isLoading } = useSWR<U>(accountURL, fetcher);
   const [popupEditActive, setPopupEditActive] = useState(false);
 
 
-  const onUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return
 
@@ -42,7 +44,7 @@ export default function Account() {
         body: formData
       }).then(res => {
         if (!res.ok) throw new Error("Ошибка загрузки");
-        
+
         return res.json();
       });
 
@@ -54,15 +56,15 @@ export default function Account() {
         body: JSON.stringify({ image: imageURL }),
       })
       if (!res.ok) throw new Error('Ошибка на серверe');
-      
+
     } catch (error) {
       console.error(error)
     } finally {
       mutate(accountURL)
       URL.revokeObjectURL(previewURL);
     }
-  }
-  const onSaveName = async (name: string) => {
+  }, [data])
+  const onSaveName = useCallback(async (name: string) => {
     mutate(accountURL, { ...data!, name }, false);
     setPopupEditActive(false)
     try {
@@ -80,8 +82,8 @@ export default function Account() {
     } catch (error) {
       console.error(error)
     }
-  }
-  
+  }, [data])
+
   if (isLoading) return <AccountSkeleton />
   if (error) return <ErrorPage error={error} />
   if (data) return <div className={classes.wrapper}>
@@ -117,3 +119,5 @@ export default function Account() {
 
   </div>;
 }
+
+export default memo(Account);

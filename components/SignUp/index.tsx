@@ -118,7 +118,6 @@ export default function SignUp() {
           name="email"
           value={form.email}
           onChange={handleChange}
-          // onBlur={checkEmailExists}
           required />
         <span className={classes.errorText}>
           {errors.email || '\u00A0'}

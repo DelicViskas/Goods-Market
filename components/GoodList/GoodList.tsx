@@ -38,6 +38,10 @@ export default function GoodsList({ type, session }: { type: 'goods' | 'favorite
   });
 
   useEffect(() => {
+    router.refresh()
+  }, [router]);
+
+  useEffect(() => {
     if (!session && type === 'favorites') router.push('/');
   }, [router, session, type]);
 
@@ -72,13 +76,14 @@ export default function GoodsList({ type, session }: { type: 'goods' | 'favorite
     const { id, isFavorite } = good;
 
     if (session) {
-      const updatedGoods = goods.map(good =>
-        good.id === id ? { ...good, isFavorite: !isFavorite } : good
-      );
+      setGoods(prevGoodList => {
+        return prevGoodList.map(g => 
+          g.id === id ? { ...g, isFavorite: !isFavorite } : g
+        );
+      });
 
-      setGoods(updatedGoods);
       mutate(countFavorites, (count: number = 0) => isFavorite ? count - 1 : count + 1, false);
-      mutate(goodsFavorites, updatedGoods, false);
+      mutate(goodsFavorites, goods, false);
 
       try {
         const method = isFavorite ? "DELETE" : "POST";
@@ -91,7 +96,6 @@ export default function GoodsList({ type, session }: { type: 'goods' | 'favorite
         });
 
         if (!res.ok) throw new Error("Ошибка обновления избранного");
-        router.refresh();
         mutate(goodsFavorites, undefined, true);
         mutate(countFavorites);
       } catch (error) {

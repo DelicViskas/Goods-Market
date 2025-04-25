@@ -12,13 +12,14 @@ import burger from '@/public/burger.svg'
 import burgerClose from '@/public/closeburger.svg'
 import signOutImg from '@/public/signOutImg.svg'
 import iconPlaceh from '@/public/iconPlaceh.svg'
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import signInImg from '@/public/signInImg.svg'
 import signUp from '@/public/signUp.svg'
 import { signIn, signOut } from "next-auth/react";
 import FavoriteCountClient from "../FavoritesCounter";
 
-export default function BurgerMenu({ session }: { session: Session | null }) {
+function BurgerMenu({ session }: { session: Session | null }) {
+  console.log('render BurgerMenu');
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -37,16 +38,20 @@ export default function BurgerMenu({ session }: { session: Session | null }) {
     if (isOpen) {
       setShouldRender(true);
     } else {
-      const timeout = setTimeout(() => setShouldRender(false), 300); 
+      const timeout = setTimeout(() => setShouldRender(false), 300);
       return () => clearTimeout(timeout);
     }
   }, [isOpen]);
 
   return <div className={classes.burgerMenu} ref={selectRef}>
-    {isOpen ?
-      <ButtonIcon src={burgerClose} width={24} height={50} title="закрыть" alt="закрыть" onClick={() => setIsOpen(false)} />
-      :
-      <ButtonIcon src={burger} width={24} height={50} title="меню" alt="меню" onClick={() => setIsOpen(true)} />}
+    <ButtonIcon
+      src={isOpen ? burgerClose : burger}
+      width={24}
+      height={50}
+      title={isOpen ? "закрыть" : "меню"}
+      alt={isOpen ? "закрыть" : "меню"}
+      onClick={() => setIsOpen(prev => !prev)}
+    />
 
     {shouldRender && <nav className={`${classes.nav} ${isOpen ? classes.fadeIn : classes.fadeOut}`}>
       {session ?
@@ -86,3 +91,5 @@ export default function BurgerMenu({ session }: { session: Session | null }) {
     </nav>}
   </div>;
 }
+
+export default memo(BurgerMenu)

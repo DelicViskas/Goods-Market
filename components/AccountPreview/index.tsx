@@ -6,12 +6,15 @@ import Image from 'next/image';
 import { Session } from 'next-auth';
 import Button from '../Button/Button';
 import { signIn } from 'next-auth/react';
+import { memo } from 'react';
 
-export default function AccountPreview(
+function AccountPreview(
   { img, name, rating, accountReviews, id, session }: { img: string | null, name: string | null, rating: number, accountReviews: number, id: string, session: Session | null }) {
+  console.log('render AccountPreview');
+
 
   return <div className={classes.account}>
-    {!session ?<Button onClick={() => signIn()}>Авторизуйтесь, чтобы свзяться с продавцом </Button>  : session?.user?.id !== id ? <Link href={`/messages/${id}`}>Написать</Link> : null}
+    {!session ? <Button onClick={() => signIn()}>Авторизуйтесь, чтобы свзяться с продавцом </Button> : session?.user?.id !== id ? <Link href={`/messages/${id}`}>Написать</Link> : null}
     <div className={classes.accountPreview}>
       <div>
         <Link className={classes.name} href={session?.user?.id === id ? '/account' : `/user/${id}`}>{name}</Link>
@@ -27,3 +30,5 @@ export default function AccountPreview(
     </div>
   </div>;
 }
+
+export default memo(AccountPreview)

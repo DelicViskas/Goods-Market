@@ -1,8 +1,8 @@
 'use client'
-import classes from "./Table.module.css";
+import classes from "./Table/Table.module.css";
 import { adminCategoriesURL, adminGoodsURL, adminUsersURL, blobURL } from "@/swr/fetcher";
-import { useState } from "react";
-import Table from "./Table";
+import { useCallback, useState } from "react";
+import Table from "./Table/Table";
 import Button from "../Button/Button";
 import { useRouter } from "next/navigation";
 
@@ -15,11 +15,13 @@ const tableLinks = {
 export type TableName = keyof typeof tableLinks;
 
 export default function AdminPanel() {
+  console.log('render adminPanel');
+
   const [activeTable, setActiveTable] = useState<TableName | null>(null);
   const router = useRouter();
-  const onClick = (name: TableName) => {
+  const onClick = useCallback((name: TableName) => {
     setActiveTable(name);
-  }
+  }, [])
 
   return <>
     <div className={classes.adminPanel}>
@@ -34,7 +36,7 @@ export default function AdminPanel() {
         </div>
         <div className={classes.exit}><Button onClick={() => router.push('/')}>Выйти</Button></div>
       </div>
-      <div className={classes.data}>{activeTable && <Table url={tableLinks[activeTable]} tableName={activeTable}/>}</div>
+      <div className={classes.data}>{activeTable && <Table url={tableLinks[activeTable]} tableName={activeTable} />}</div>
     </div>
   </>
 }

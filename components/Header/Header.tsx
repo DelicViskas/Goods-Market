@@ -18,6 +18,8 @@ import BurgerMenu from "../BurgerMenu";
 
 
 export default async function Header() {
+  console.log('render Header');
+  
   const session = await auth();
 
   return <header className={classes.header}>

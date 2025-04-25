@@ -1,11 +1,12 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import styles from './CustomSelect.module.css';
 import { Categories } from '@prisma/client';
 import category from '@/public/category.svg';
 import ButtonIcon from '../Button/Button-icon';
 
-export default function CustomSelect({ onChange, options}: {onChange: (value: string) => void, options: Categories[]}) {
+function CustomSelect({ onChange, options}: {onChange: (value: string) => void, options: Categories[]}) {
+  console.log('render CustomSelect');
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -39,3 +40,5 @@ export default function CustomSelect({ onChange, options}: {onChange: (value: st
     </div>
   );
 }
+
+export default memo(CustomSelect)

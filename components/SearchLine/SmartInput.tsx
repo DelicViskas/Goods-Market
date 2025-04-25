@@ -4,7 +4,7 @@ import remove from '@/public/closegray.svg'
 import classes from './SmartInput.module.css'
 
 export default function SmartInput({ valueInput, setValueInput, setValue }: { valueInput: string, setValueInput: (value: string) => void; setValue: (value: string) => void }) {
-
+  
   return <label className={classes.input}>
     <input
       type="text"

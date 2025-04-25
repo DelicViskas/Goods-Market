@@ -4,6 +4,8 @@ import classes from "./index.module.css";
 
 
 export default function EditName({ name, onClose, onSave }: { name: string, onClose: () => void, onSave: (name: string) => void }) {
+  console.log('render editname');
+  
   const [userName, setUserName] = useState(name)
 
   return <div className={classes.editName}>

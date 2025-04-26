@@ -5,10 +5,7 @@ import { fetcher, messagesURL } from "@/swr/fetcher";
 import useSWR from "swr";
 import MessageCard from "./MessageCard";
 import Spinner from "../Spinner";
-// import { useEffect } from "react";
-
 import { Session } from "next-auth";
-// import { useRouter } from "next/navigation";
 
 export type Mess = {
   createdAt: string,
@@ -20,14 +17,6 @@ export type Mess = {
 
 export default function MessageList({session}: {session: Session | null}) {
   const { data, error, isLoading } = useSWR<Mess[]>(messagesURL, fetcher)
-
-  // const router = useRouter();
-  
-
-  // useEffect(() => {
-  //   if (!session || session === undefined)
-  //     router.push('/')
-  // }, [session, router])
   
   if (isLoading) return <div className="center"><Spinner /></div>
   if (error) return <ErrorPage error={error} />

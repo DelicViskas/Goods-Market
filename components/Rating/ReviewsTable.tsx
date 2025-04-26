@@ -12,7 +12,7 @@ type Ratings = {
   5?: number;
 };
 
-export default function ReviewsTable({ ratings = { 1: 2, 5: 3 } }: { ratings: Ratings }) {
+export default function ReviewsTable({ ratings }: { ratings: Ratings }) {
   const total = Object.values(ratings).reduce((acc, val) => acc + val, 0);
   const average =
     total === 0
@@ -44,7 +44,7 @@ export default function ReviewsTable({ ratings = { 1: 2, 5: 3 } }: { ratings: Ra
 
           return (
             <div key={star} className={styles.barRow}>
-              {getStarsFill(star).map((src, i) => <Image key={i + Math.random()} src={src} alt="звезда" />)}
+              {getStarsFill(star).map((src, i) => <Image key={`${star}-${i}`} src={src} alt="звезда" />)}
               <div className={styles.barBackground}>
                 <div
                   className={styles.barFill}

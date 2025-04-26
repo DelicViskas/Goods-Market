@@ -4,7 +4,6 @@ import Button from '../Button/Button';
 import classes from './index.module.css'
 import { accountURL } from '@/swr/fetcher';
 import Spinner from '../Spinner';
-// import { signIn } from 'next-auth/react';
 
 export default function SignUp() {
   const [confirmEmail, setConfirmEmail] = useState(false);

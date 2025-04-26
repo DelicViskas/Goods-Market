@@ -12,13 +12,13 @@ import burger from '@/public/burger.svg'
 import burgerClose from '@/public/closeburger.svg'
 import signOutImg from '@/public/signOutImg.svg'
 import iconPlaceh from '@/public/iconPlaceh.svg'
-import { memo, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import signInImg from '@/public/signInImg.svg'
 import signUp from '@/public/signUp.svg'
 import { signIn, signOut } from "next-auth/react";
 import FavoriteCountClient from "../FavoritesCounter";
 
-function BurgerMenu({ session }: { session: Session | null }) {
+export default function BurgerMenu({ session }: { session: Session | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -90,5 +90,3 @@ function BurgerMenu({ session }: { session: Session | null }) {
     </nav>}
   </div>;
 }
-
-export default memo(BurgerMenu)

@@ -2,9 +2,9 @@ import Image from "next/image";
 import fullStar from '@/public/full-star.svg'
 import halfStar from '@/public/half-star.svg'
 import emptyStar from '@/public/empty-star.svg'
+import { memo } from "react";
 
-export default function RatingStars({ rating, totalStars = 5 }: { rating: number, totalStars?: number }) {
-
+function RatingStars({ rating, totalStars = 5 }: { rating: number, totalStars?: number }) {
   const getStarType = (index: number) => {
     const starRating = rating - index;
     if (starRating >= 0.85) return 'full';
@@ -26,3 +26,5 @@ export default function RatingStars({ rating, totalStars = 5 }: { rating: number
     </div>
   );
 }
+
+export default memo(RatingStars);

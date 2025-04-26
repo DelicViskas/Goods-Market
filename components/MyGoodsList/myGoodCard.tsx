@@ -3,7 +3,7 @@ import removeIcon from "@/public/closegray.svg";
 import editIcon from "@/public/edit.svg";
 import ButtonIcon from "../Button/Button-icon";
 import { goodsFavorites, myGoodsURL } from "@/swr/fetcher";
-import { useState } from "react";
+import { memo, useState } from "react";
 import PopUpWindow from "../PopUpWindow/PopUpWindow";
 import Confirm from "../ConfirmWindow";
 import { mutate } from "swr";
@@ -12,10 +12,27 @@ import FormCreateGood from "../FormCreateGood";
 import { placeholderImg } from "../GoodList/GoodCard";
 import Link from "next/link";
 
-export default function MyGood({ good }: { good: Good }) {
+function MyGood({ good }: { good: Good }) {
   const [popupConfirmActive, setPopupConfirmActive] = useState(false);
   const [popupEditActive, setPopupEditActive] = useState(false);
   const { id, description, createdAt, image, title, price } = good;
+
+  const showRemoveConfirmWindow = () => {
+    setPopupConfirmActive(true);
+  };
+
+  const hideRemoveConfirmWindow = () => {
+    setPopupConfirmActive(false);
+  };
+
+  const showEditWindow = () => {
+    setPopupEditActive(true);
+  };
+
+  const hideEditWindow = () => {
+    setPopupEditActive(false);
+  };
+
   const removeGood = async () => {
     try {
       mutate(myGoodsURL, (goods: Good[] = []) => goods.filter(g => g.id !== id), false)
@@ -34,6 +51,8 @@ export default function MyGood({ good }: { good: Good }) {
       mutate(myGoodsURL);
     }
   };
+
+
   const saveEditGood = async (creategood: { title: string, price: number, description: string, image: string[] }) => {
     try {
       mutate(myGoodsURL, (goods: Good[] = []) => goods.map(g => g.id === good.id ? { ...g, ...creategood } : g), false)
@@ -49,19 +68,6 @@ export default function MyGood({ good }: { good: Good }) {
       mutate(myGoodsURL)
     }
   };
-  const showRemoveConfirmWindow = () => {
-    setPopupConfirmActive(true)
-  }
-  const hideRemoveConfirmWindow = () => {
-    setPopupConfirmActive(false)
-  }
-  const showEditWindow = () => {
-    setPopupEditActive(true)
-  }
-  const hideEditWindow = () => {
-    setPopupEditActive(false)
-  }
-
 
   return <>
     <Link href={`/good/${good.id}`} className={`${classes.good}`}>
@@ -93,3 +99,5 @@ export default function MyGood({ good }: { good: Good }) {
 
   </>
 }
+
+export default memo(MyGood)

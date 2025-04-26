@@ -6,7 +6,7 @@ import Image from "next/image";
 
 
 export default function ReviewsList({reviews}: {reviews: Rev[]}) {
-  
+
   return reviews.map(rev => {
     return <div key={rev.id} className={classses.review}>
       <div className={classses.infoSender}>

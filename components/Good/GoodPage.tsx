@@ -1,12 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-
-"use client"
-import {  useState } from "react";
-import { placeholderImg } from "../GoodList/GoodCard";
 import { Good } from "../GoodList/GoodList";
 import classes from './good.module.css';
 import AccountPreview from "../AccountPreview";
 import { Session } from "next-auth";
+import ClientImageGallery from "./ClientImageGallery";
 
 type GoodAndU = Good & {
   accountName: string | null,
@@ -17,68 +13,15 @@ type GoodAndU = Good & {
 };
 
 export default function GoodPage({ good, session }: { good: GoodAndU, session: Session | null }) {
-  const images = good.image.length ? good.image : [placeholderImg];
-  const [activeImg, setActiveImg] = useState(images[0]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const date = new Date(good.createdAt);
-  const createdAt = `${date.toLocaleDateString()} в ${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
-
-
-  const handleImageChange = (newImage: string) => {
-    setIsLoading(true);
-    setActiveImg(newImage);
-  };
+  const createdAt = `${date.toLocaleDateString()} в ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
   return (
     <div className={classes.good}>
       <div className={classes.column1}>
         <h1>{good.title}</h1>
         <span>{good.price} ₽</span>
-        <div className={classes.images}>
-          <div className={classes.mainImg}>
-
-
-            <img
-              loading="lazy"
-              src={activeImg}
-              alt={`image-${activeImg}`}
-              className={isLoading ? classes.imgHidden : ''}
-              onLoad={() => setIsLoading(false)}
-              onError={() => setIsLoading(false)}
-            />
-
-            {good.image.length > 1 && <><button className={classes.prev} onClick={() => {
-              const i = images.indexOf(activeImg);
-              const newIndex = (i - 1 + images.length) % images.length;
-              handleImageChange(images[newIndex]);
-            }}>
-              {'<'}
-            </button>
-
-              <button className={classes.next} onClick={() => {
-                const i = images.indexOf(activeImg);
-                const newIndex = (i + 1) % images.length;
-                handleImageChange(images[newIndex]);
-              }}>
-                {'>'}
-              </button></>}
-          </div>
-
-          {good.image.length > 1 && (
-            <div className={classes.littleImg}>
-              {images.map((img, i) => (
-                <img
-                  key={`image-${i}`}
-                  src={img}
-                  alt={`image-${i}`}
-                  className={activeImg === img ? classes.active : ''}
-                  onClick={() => handleImageChange(img)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+        <ClientImageGallery images={good.image} />
 
         <h4>Категория: <span>{good.category}.</span></h4>
         <h2>Описание</h2>

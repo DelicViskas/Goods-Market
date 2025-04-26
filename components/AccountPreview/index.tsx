@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import classes from './index.module.css'
 import RatingStars from '../Rating/RatingStars';

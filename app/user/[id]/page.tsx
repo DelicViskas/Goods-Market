@@ -19,7 +19,7 @@ export default async function Home({ params }: { params: Promise<{ id: string }>
     ...good,
     isFavorite: Favorites?.length > 0,
   }))
-
+  //переделать на 
   if (goods.length) return <AuthorGoodList session={session} goods={goodsAndFavorites} />
   return <div className="center top"><h3>Нет товаров</h3></div>
 }

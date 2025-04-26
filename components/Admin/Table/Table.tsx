@@ -45,8 +45,6 @@ type Blobs = {
 
 
 function Table({ url, tableName }: { url: string, tableName: TableName }) {
-  console.log('render Table');
-
   const { data, error, isLoading } = useSWR<User[] | Categories[] | Good[] | Blobs[]>(url, fetcher);
   const [isAdded, setIsAdded] = useState(false);
   const { data: categories } = useCategories()

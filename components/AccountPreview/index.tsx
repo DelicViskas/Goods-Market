@@ -10,7 +10,6 @@ import { memo } from 'react';
 
 function AccountPreview(
   { img, name, rating, accountReviews, id, session }: { img: string | null, name: string | null, rating: number, accountReviews: number, id: string, session: Session | null }) {
-  console.log('render AccountPreview');
 
 
   return <div className={classes.account}>

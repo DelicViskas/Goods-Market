@@ -19,7 +19,6 @@ import { signIn, signOut } from "next-auth/react";
 import FavoriteCountClient from "../FavoritesCounter";
 
 function BurgerMenu({ session }: { session: Session | null }) {
-  console.log('render BurgerMenu');
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);

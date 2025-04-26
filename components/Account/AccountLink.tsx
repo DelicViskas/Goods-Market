@@ -14,7 +14,6 @@ import useSWR from "swr";
 import { accountURL, fetcher } from "@/swr/fetcher";
 
 export default function AccountLink({ session }: { session: Session | null }) {
-  console.log('render AccountLink');
   const { data, isLoading } = useSWR(accountURL, fetcher);
 
   if (session) {

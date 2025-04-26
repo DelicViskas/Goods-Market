@@ -15,8 +15,6 @@ const tableLinks = {
 export type TableName = keyof typeof tableLinks;
 
 export default function AdminPanel() {
-  console.log('render adminPanel');
-
   const [activeTable, setActiveTable] = useState<TableName | null>(null);
   const router = useRouter();
   const onClick = useCallback((name: TableName) => {

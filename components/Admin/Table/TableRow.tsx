@@ -18,7 +18,7 @@ function TableRow({ obj,
     onSave: (id: string | number, editValues: Record<string, string>) => void;
     onDelete: () => Promise<void>;
   }) {
-  console.log('render TableRow');
+
 
   const [editValues, setEditValues] = useState<Record<string, string>>({});
   const [isDeleting, setIsDeleting] = useState(false);

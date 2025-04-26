@@ -12,12 +12,10 @@ export const placeholderImg = '/noimage.png';
 
 function GoodCard({ good, toggleFav, session }: { good: Good, toggleFav: () => void, session: Session | null }) {
   if (!good) return null;
-  console.log('render GoodCard');
-  
   const { id, image, title, price, isFavorite } = good;
 
   return (
-    <Link href={`/good/${id}`} target="_blank" className={`${classes.good} cursor-pointer`}>
+    <Link href={`/good/${id}`}  className={`${classes.good} cursor-pointer`}>
       <Slider images={image.length ? image : [placeholderImg]} />
       <span className={classes.title}>{title}</span>
       {session && (

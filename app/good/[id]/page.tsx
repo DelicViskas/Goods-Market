@@ -43,3 +43,19 @@ export default async function Home({ params }: { params: Promise<{ id: string }>
 
   return <GoodPage session={session} good={goodAndU} />
 }
+
+export async function generateStaticParams() {
+  const goods = await prisma.goods.findMany({
+    select: { id: true }
+  });
+
+  return goods.map((good) => ({
+    id: good.id.toString(),
+  }));
+}
+
+
+
+export const config = {
+  revalidate: 60,
+};

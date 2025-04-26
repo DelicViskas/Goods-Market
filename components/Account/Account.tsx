@@ -23,8 +23,6 @@ type U = User & {
 }
 
 function Account() {
-  console.log('render account');
-
   const { data, error, isLoading } = useSWR<U>(accountURL, fetcher);
   const [popupEditActive, setPopupEditActive] = useState(false);
 

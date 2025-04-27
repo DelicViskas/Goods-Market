@@ -70,8 +70,7 @@ export default function GoodsList({ type, session }: { type: 'goods' | 'favorite
     setOffset(nextOffset);
 
     if (newGoods.length < 30) setHasMore(false);
-  };
-
+  }; 
   const toggleFav = async (good: Good) => {
     const { id, isFavorite } = good;
 

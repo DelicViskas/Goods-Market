@@ -22,8 +22,7 @@ export default function Slider({ images }: { images: string[] }) {
     const relativeX = e.clientX - left;
 
     if (relativeX < 0 || relativeX > width) return;
-
-
+    
     const segmentWidth = width / images.length;
     const index = Math.floor(relativeX / segmentWidth);
     slider.current.moveToIdx(index);

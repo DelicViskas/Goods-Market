@@ -57,5 +57,5 @@ export async function generateStaticParams() {
 
 
 export const config = {
-  revalidate: 60,
+  revalidate: 600,
 };
